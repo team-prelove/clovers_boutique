@@ -1,5 +1,5 @@
 const ModelProduct = require('../model/modelProduct')
-const ModelMaster = require('../model/modelMaster')
+const ModelMaster = require('../model/modelCart')
 
 
 class Product {
@@ -11,11 +11,11 @@ class Product {
         // console.log(data)
         res.render('/list', {data})
     }
-    static tambahProduct(req, res){
+    static tambahProduct(req, res, next){
         ModelProduct.create(req.body).then(response => {
-            res.json({pesan: 'berhasil'})
+            res.status(200).json({pesan: 'berhasil'})
         }).catch(err => {
-            console.log(err)
+            next(err)
         })
     }
 }

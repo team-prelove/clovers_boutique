@@ -7,7 +7,7 @@ const jenis = require('./jenis')
 
 router.use('/user', user)
 router.use('/product', product)
-router.use('/jenis', jenis)
+router.use('/cart', cart)
 
 
 module.exports = router

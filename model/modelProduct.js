@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize');
 const sq = require('../config/connection');
-const ModelMaster = require('../model/modelMaster');
 
-const ModelProduct = sq.define('Master', {
+
+const ModelProduct = sq.define('Product', {
   
     id: {
     type: DataTypes.INTEGER,
@@ -10,6 +10,11 @@ const ModelProduct = sq.define('Master', {
     primaryKey: true
   },
     nama_barang: {
+    type: DataTypes.STRING,
+    length:30,
+    allowNull:false
+  },
+   jenis_barang: {
     type: DataTypes.STRING,
     length:30,
     allowNull:false
@@ -39,8 +44,7 @@ const ModelProduct = sq.define('Master', {
  
 });
 
-    ModelProduct.belongsTo(ModelMaster);
-    ModelMaster.hasMany(ModelProduct);
+    
 
     ModelProduct.sync({alter:true})
 
