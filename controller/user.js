@@ -7,7 +7,7 @@ class User {
         let post = req.body;
         post.password = hashPassword(post.password);
         ModelUser.create(post).then(response => {
-            res.json({pesan: 'sukses'})
+            res.status(200).json({pesan: 'sukses'})
         }).catch(err => {
             next(err)
         })

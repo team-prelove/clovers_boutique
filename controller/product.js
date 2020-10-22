@@ -1,12 +1,12 @@
 const ModelProduct = require('../model/modelProduct')
 const ModelMaster = require('../model/modelCart')
+const {Op} = require('sequelize')
 
 
 class Product {
     static async list(req, res){
 
        let data = await ModelProduct.findAll({ 
-        include : ModelMaster
         })
         // console.log(data)
         res.render('/list', {data})
@@ -18,6 +18,16 @@ class Product {
             next(err)
         })
     }
+    // static search(req, res, next){
+    //     const {keyword} = req.query
+    //     let data = await ModelProduct.findAll({ 
+    //         where : {
+    //             nama_barang : {
+    //                 [Op.like] : '%' + keyword + '%'
+    //             }
+    //         }
+    //         })
+    // }
 }
 
 module.exports = Product

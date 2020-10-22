@@ -4,7 +4,7 @@ const ModelProduct = require('../model/modelProduct')
 
 
 class Cart {
-    static cartList(req, res, next){
+    static async cartList(req, res, next){
         const data_user  = verifyToken(req.session.accesstoken)
         const userId = data_user.id
     let data = await ModelCart.findAll({ 

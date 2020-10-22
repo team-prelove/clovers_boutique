@@ -4,8 +4,8 @@ const productController = require('../controller/product');
 const authentication = require('../middlewares/authentication')
 
 
-router.get('/list', authentication, productController.list)
-router.post('/insert/product', authentication, productController.tambahProduct)
+router.get('/list', productController.list)
+router.post('/insert/product', productController.tambahProduct)
 
 
 
