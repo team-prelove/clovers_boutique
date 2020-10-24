@@ -4,16 +4,16 @@ const ModelProduct = require('../model/modelProduct')
 
 
 class Cart {
-    static async cartList(req, res, next){
+    static cartList(req, res, next){
         const data_user  = verifyToken(req.session.accesstoken)
         const userId = data_user.id
-    let data = await ModelCart.findAll({ 
+        ModelCart.findAll({ 
         where:{userId},
         include : ModelProduct
         })
         .then(result =>{
             // res.json(result)
-            res.render('cart', {result, data})
+            res.render('cart', {result, data_user})
         })
         .catch(err =>{
          next(err)
