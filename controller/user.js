@@ -23,7 +23,7 @@ class User {
                 if(compare(req.body.password, data[0].dataValues.password)){
                     
                     let token = generateToken(data[0].dataValues);
-                    res.status(200).json(token)
+                    res.status(200).json({token})
                   
                 }else{
                     // res.render('user/login', { pesan: 'Password Anda Salah' })

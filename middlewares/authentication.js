@@ -3,6 +3,7 @@ const {verifyToken} = require('../helper/jwt');
 
 const authentication = (req, res , next) => {
     const decode = verifyToken(req.headers.accesstoken)
+    // console.log(decode)
     ModelUser.findByPk(decode.id)
       .then( data => {
         if(data){

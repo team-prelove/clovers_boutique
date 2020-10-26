@@ -12,9 +12,61 @@ class Product {
         res.render('/list', {data})
     }
     static tambahProduct(req, res, next){
-        ModelProduct.create(req.body).then(response => {
+        const { nama_barang, jenis_barang, harga, stock, keterangan } = req.body
+        console.log(req.body)
+        ModelProduct.create({nama_barang, jenis_barang, harga, stock, keterangan})
+        .then(response => {
             res.status(200).json({pesan: 'berhasil'})
         }).catch(err => {
+            next(err)
+        })
+    }
+    static bagList(req, res, next){
+        ModelProduct.findAll({
+            where : {
+                jenis_barang : 'tas'
+            }
+        })
+        .then(result => {
+            res.status(200).json({result})
+        })
+        .catch(err =>{
+            next(err)
+        })
+    }
+    static shoesList(req, res, next){
+        ModelProduct.findAll({
+            where : {
+                jenis_barang : 'Sepatu'
+            }
+        })
+        .then(result => {
+            res.status(200).json({result})
+        })
+        .catch(err =>{
+            next(err)
+        })
+    }
+    static accList(req, res, next){
+        ModelProduct.findAll({
+            where : {
+                jenis_barang : 'Aksesoris'
+            }
+        })
+        .then(result => {
+            res.status(200).json({result})
+        })
+        .catch(err =>{
+            next(err)
+        })
+    }
+    static detailList(req, res, next){
+        const { id } = req.params
+        ModelProduct.findAll(id)
+        .then(result => {
+            res.status(200).json({result})
+        })
+        .catch(err =>{
             next(err)
         })
     }

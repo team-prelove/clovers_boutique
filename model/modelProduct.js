@@ -24,22 +24,27 @@ const ModelProduct = sq.define('Product', {
     length:30,
     allowNull:false
   },
+    stock: {
+    type: DataTypes.INTEGER,
+    length:30,
+    allowNull:false
+  },
     keterangan: {
     type: DataTypes.STRING,
     allowNull:false
   },
-    foto1: {
-        type: DataTypes.STRING,
-        allowNull:false
-    },
-    foto2: {
-        type: DataTypes.STRING,
-        allowNull:false
-    },
-    foto3: {
-        type: DataTypes.STRING,
-        allowNull:false
-    },
+    // foto1: {
+    //     type: DataTypes.STRING,
+    //     allowNull:false
+    // },
+    // foto2: {
+    //     type: DataTypes.STRING,
+    //     allowNull:false
+    // },
+    // foto3: {
+    //     type: DataTypes.STRING,
+    //     allowNull:false
+    // },
 }, {
  
 });

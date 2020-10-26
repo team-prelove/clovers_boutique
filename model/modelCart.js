@@ -10,16 +10,6 @@ const ModelCart = sq.define('Cart', {
     autoIncrement: true,
     primaryKey: true
   },
-  productId: {
-    type: DataTypes.INTEGER,
-    length:30,
-    allowNull:false
-  },
-  userId: {
-    type: DataTypes.INTEGER,
-    length:30,
-    allowNull:false
-  },
   jumlah_barang: {
     type: DataTypes.INTEGER,
     length:30,
