@@ -12,9 +12,11 @@ class Product {
         res.render('/list', {data})
     }
     static tambahProduct(req, res, next){
-        const { nama_barang, jenis_barang, harga, stock, keterangan } = req.body
-        console.log(req.body)
-        ModelProduct.create({nama_barang, jenis_barang, harga, stock, keterangan})
+        req.body.foto1 = req.files.foto1[0].filename;
+        req.body.foto2 = req.files.foto2[0].filename;
+        req.body.foto3 = req.files.foto3[0].filename;
+        
+        ModelProduct.create(req.body)
         .then(response => {
             res.status(200).json({pesan: 'berhasil'})
         }).catch(err => {

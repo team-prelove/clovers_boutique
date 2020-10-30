@@ -6,9 +6,9 @@ const { update } = require('../model/modelProduct')
 
 class Cart {
     static cartList(req, res, next){
-        const userId = req.user.id
+        const UserId = req.user.id
         ModelCart.findAll({ 
-        where:{userId},
+        where:{UserId},
         include : ModelProduct
         })
         .then(result =>{
@@ -23,18 +23,15 @@ class Cart {
         const ProductId  = req.params.id
         const { jumlah_barang } = req.body
         const UserId = req.user.id
-        if(jumlah_barang < 1){
-            next({ status: 400, message: 'Amount Dont Lower Than 1'})
-        }
         ModelProduct.findOne({id:ProductId})
             .then(data =>{
                 // console.log(data)
                 if(data.stock <= 0){
-                    next({ status: 400, message: 'Stock is Empty'})
+                    next({ status: 400, message: 'Maaf stok habis'})
                 }
                 
                 else if(jumlah_barang > data.stock) {
-                    next({ status: 400, message: 'Your Amount Greather Than Product Stock'})
+                    next({ status: 400, message: 'Maaf stok kurang'})
                 }
                 else {
                     console.log('tes')
@@ -42,8 +39,8 @@ class Cart {
                 }
             })
             .then( data => {
-                console.log('tus')
                 console.log(data)
+ 
                 if(data){
                    ModelCart.findOne({ ProductId: ProductId}, { jumlah_barang })
                   .then(data => {
@@ -54,7 +51,7 @@ class Cart {
                   })
                   .catch(next)
                 } else {
-                    console.log(ProductId)
+                    console.log("crot")
                   return ModelCart.create({ ProductId: ProductId, jumlah_barang, UserId })
                 }
             })
