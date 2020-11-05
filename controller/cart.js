@@ -34,12 +34,12 @@ class Cart {
                     next({ status: 400, message: 'Maaf stok kurang'})
                 }
                 else {
-                    console.log('tes')
-                    return ModelCart.findOne({ProductId: ProductId, UserId})
+                    // console.log(ProductId)
+                    return ModelCart.findOne({where : { ProductId: ProductId, UserId} })
                 }
             })
             .then( data => {
-                console.log(data)
+                console.log(data, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
  
                 if(data){
                    ModelCart.findOne({ ProductId: ProductId}, { jumlah_barang })
@@ -63,9 +63,9 @@ class Cart {
     
     static removeCart(req, res, next){
         const {id} = req.params
-        Cart.destroy({where:{id}})
+        ModelCart.destroy({where:{id}})
         .then(result => {
-            res.status(200).json({result})
+            res.status(200).json({result : "sukses"})
         })
         .catch(err => {
             next(err)
