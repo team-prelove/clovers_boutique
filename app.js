@@ -8,6 +8,7 @@ const errorHandler = require('./middlewares/errorHandler')
 // const cors = require('cors')
 
 
+
 // app.use(cors())
 app.use(morgan('dev'))
 app.use(express.urlencoded({ extended: false }))
