@@ -9,7 +9,7 @@ class Product {
        let data = await ModelProduct.findAll({ 
         })
         // console.log(data)
-        res.render('/list', {data})
+        res.status(200).json({data})
     }
     static tambahProduct(req, res, next){
         req.body.foto1 = req.files.foto1[0].filename;
