@@ -39,6 +39,38 @@ class User {
             req.session.destroy()
             res.redirect('/user/login')
         }
+        static loginGoogle(req, res, next) {
+            const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+            let payload = null;
+            client.verifyIdToken({
+            idToken: req.body.token,
+            audience: process.env.GOOGLE_CLIENT_ID
+            })
+            .then(ticket => {
+            payload = ticket.getPayload()
+            return User.findOne({
+            email: payload.email
+            })
+            })
+            .then(user => {
+            if (user) {
+            return user
+            } else {
+            return User.create({
+            name: payload.name,
+            password: process.env.PASSWORD_USER,
+            email: payload.email,
+            })
+            }
+            })
+            .then(user => {
+            const token = tokenGenerate({
+            id: user._id
+            })
+            res.status(201).json({ token, username: user.name})
+            })
+            .catch(next)
+            } 
 }
 
 module.exports = User
