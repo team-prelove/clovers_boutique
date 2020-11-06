@@ -64,7 +64,7 @@ class Product {
     }
     static detailList(req, res, next){
         const { id } = req.params
-        ModelProduct.findAll(id)
+        ModelProduct.findByPk(id)
         .then(result => {
             res.status(200).json({result})
         })
