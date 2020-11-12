@@ -13,6 +13,6 @@ router.get('/detail/:id', authentication, productController.detailList)
 
 var cpUpload = upload.fields([{ name: 'foto1', maxCount: 1 }, { name: 'foto2', maxCount: 1 }, { name: 'foto3', maxCount: 1 }])
 router.post('/insert', cpUpload, productController.tambahProduct)
-router.post('/edit', cpUpload, productController.editProduct)
+router.post('/edit/:id', cpUpload, productController.editProduct)
 
 module.exports = router
