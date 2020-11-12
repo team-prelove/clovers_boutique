@@ -39,7 +39,7 @@ class Product {
     static shoesList(req, res, next){
         ModelProduct.findAll({
             where : {
-                jenis_barang : 'Sepatu'
+                jenis_barang : 'sepatu'
             }
         })
         .then(result => {
@@ -52,7 +52,7 @@ class Product {
     static accList(req, res, next){
         ModelProduct.findAll({
             where : {
-                jenis_barang : 'Aksesoris'
+                jenis_barang : 'aksesoris'
             }
         })
         .then(result => {
