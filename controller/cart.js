@@ -39,8 +39,13 @@ class Cart {
                 }
             })
             .then( data => {
-                console.log(data, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
- 
+                // console.log(data, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+                // if(data) {
+                //     return ModelCart.update({jumlah_barang}, {where: {ProductId}})
+                // }
+                // else {
+                //     return ModelCart.create({ProductId: ProductId, jumlah_barang, UserId})
+                // }
                 if(data){
                    ModelCart.findOne({ ProductId: ProductId}, { jumlah_barang })
                   .then(data => {
@@ -60,7 +65,15 @@ class Cart {
             })
             .catch(next)
     }
-    
+    static editCart(req, res, next){
+        ModelCart.update(req.body, { where: { id: req.params.id } })
+        .then((response)=>{
+            res.status(200).json({pesan: 'berhasil'})
+        }).catch(err=>{
+            next(err)
+        })
+        
+    }
     static removeCart(req, res, next){
         const {id} = req.params
         ModelCart.destroy({where:{id}})

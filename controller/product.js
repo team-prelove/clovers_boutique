@@ -62,6 +62,15 @@ class Product {
             next(err)
         })
     }
+    static editProduct(req, res, next){
+        ModelProduct.update(req.body, { where: { id: req.params.id } })
+        .then((response)=>{
+            res.status(200).json({pesan: 'berhasil'})
+        }).catch(err=>{
+            next(err)
+        })
+        
+    }
     static detailList(req, res, next){
         const { id } = req.params
         ModelProduct.findByPk(id)
